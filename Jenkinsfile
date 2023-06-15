@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'python:2-alpine'
-                    args '--entrypoint=""'
+                    args '--entrypoint='
                 }
             }
             steps {
@@ -16,6 +16,7 @@ pipeline {
             agent {
                 docker {
                     image 'qnib/pytest'
+                    args '--entrypoint='
                 }
             }
             steps {
@@ -30,11 +31,12 @@ pipeline {
         stage('Deliver') {
             agent {
                 docker {
-                    image 'cdrx/pyinstaller-linux:python2'
-                    args '--entrypoint=""'
+                    image 'python:2-alpine'
+                    args '--entrypoint='
                 }
             }
             steps {
+                sh 'pip install pyinstaller'
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
             post {
