@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'python:3-alpine'
                     args '--entrypoint='
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
         stage('Deliver') {
             agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'cdrx/pyinstaller-linux:python3'
                     args '--entrypoint='
                 }
             }
