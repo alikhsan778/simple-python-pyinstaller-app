@@ -31,11 +31,12 @@ pipeline {
         stage('Deliver') {
             agent {
                 docker {
-                    image 'cdrx/pyinstaller-linux:python3'
+                    image 'python:3-alpine'
                     args '--entrypoint='
                 }
             }
             steps {
+                sh 'apk add --update py3-pip'
                 sh 'pip install pyinstaller'
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
