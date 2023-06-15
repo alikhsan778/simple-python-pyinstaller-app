@@ -5,6 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'python:2-alpine'
+                    args '--entrypoint=""'
                 }
             }
             steps {
@@ -30,6 +31,7 @@ pipeline {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
+                    args '--entrypoint=""'
                 }
             }
             steps {
